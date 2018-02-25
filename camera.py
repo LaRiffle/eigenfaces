@@ -1,12 +1,22 @@
+from pynput import keyboard
 import picamera
 from time import sleep
+
+name_of_subject = 'max'
 
 camera = picamera.PiCamera()
 camera.color_effects = (128,128)
 path = '/home/pi/Documents/images/'
-# camera.capture('/home/pi/Desktop/img3.jpg')
+
 camera.start_preview()
-sleep(10)
-for i in range(10):
-    camera.capture(path + 'max_2_' + str(i) + '.jpg')
-    sleep(0.4)
+
+def on_press(key):
+    for i in range(100):
+        camera.capture(path + name_of_subject + '_' + str(i) + '.jpg')
+        sleep(0.5)
+    return False
+
+# Collect events until released
+with keyboard.Listener(
+        on_press=on_press) as listener:
+    listener.join()

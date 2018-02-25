@@ -1,11 +1,11 @@
 import imageio
-import numpy as np
 from os import listdir
 from os.path import isfile, join
 from PIL import Image
 
 
-#path = '/home/pi/Documents/test/'
+# select path depending of the machine used
+#path = '/home/pi/Documents/eigenfaces/'
 path = '/Users/ryffel/Documents/TPE/eigenfaces/'
 path_source = path + 'images/'
 path_target = path + 'data/'
