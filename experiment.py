@@ -24,6 +24,7 @@ camera.start_preview()
 def on_press(key):
     filepath = path + 'test.jpg'
     camera.capture(filepath)
+    camera.stop_preview()
 
     # crop
     img = imageio.imread(filepath)
@@ -52,7 +53,6 @@ def on_press(key):
     return False
 
 # Collect events until released
-with keyboard.Listener(
-        on_press=on_press) as listener:
+with keyboard.Listener(on_press=on_press) as listener:
     listener.join()
 
