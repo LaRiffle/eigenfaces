@@ -26,6 +26,11 @@ def on_press(key):
     camera.capture(filepath)
     camera.stop_preview()
 
+    # ensure img is in B&W
+    image_file = Image.open(filepath)  # open colour image
+    image_file = image_file.convert('L')  # convert image to black and white
+    image_file.save(filepath)
+
     # crop
     img = imageio.imread(filepath)
     width = img.shape[1]
