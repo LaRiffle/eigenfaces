@@ -12,9 +12,16 @@ import imageio
 
 from sklearn.externals import joblib
 
+def warn(*args, **kwargs):
+    pass
+import warnings
+warnings.warn = warn
+
 
 path = '/home/pi/Documents/eigenfaces/'
 #path = '/Users/ryffel/Documents/TPE/eigenfaces/'
+
+print('Prise de photo...')
 
 camera = picamera.PiCamera()
 camera.color_effects = (128,128)
@@ -25,6 +32,7 @@ def on_press(key):
     filepath = path + 'test.jpg'
     camera.capture(filepath)
     camera.stop_preview()
+    print('Détection...')
 
     # ensure img is in B&W
     image_file = Image.open(filepath)  # open colour image
@@ -45,7 +53,6 @@ def on_press(key):
     img = Image.open(filepath)
     wpercent = (basewidth / float(img.size[0]))
     hsize = int((float(img.size[1]) * float(wpercent))) + 1
-    print('w', basewidth, 'h', hsize)
     img = img.resize((basewidth, hsize), Image.ANTIALIAS)
     img.save(filepath)
 
