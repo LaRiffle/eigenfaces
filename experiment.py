@@ -30,7 +30,9 @@ def on_press(key):
     img = imageio.imread(filepath)
     width = img.shape[1]
     height = img.shape[0]
-    img = img[int(0*height):int(1*height), int(0.2669 * width):int(0.7330 * width)]
+    w = height  * 37 / 52
+    l = (width - w)/2
+    img = img[int(0*height):int(1*height), int(l):int(width - l)]
     imageio.imwrite(filepath, img)
 
     # reduce quality
