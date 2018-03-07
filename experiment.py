@@ -39,7 +39,7 @@ def on_press(key):
     basewidth = 37
     img = Image.open(filepath)
     wpercent = (basewidth / float(img.size[0]))
-    hsize = int((float(img.size[1]) * float(wpercent)))
+    hsize = int((float(img.size[1]) * float(wpercent))) + 1
     print('w', basewidth, 'h', hsize)
     img = img.resize((basewidth, hsize), Image.ANTIALIAS)
     img.save(filepath)
